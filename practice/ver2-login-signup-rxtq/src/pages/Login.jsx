@@ -30,6 +30,9 @@ const Login = () => {
     },
   });
 
+  //useQuery = for automatic data fetching / reading data
+  //useMutation = for user-triggered actions / changing something
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
