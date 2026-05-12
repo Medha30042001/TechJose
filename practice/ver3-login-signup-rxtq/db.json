@@ -23,6 +23,24 @@
       "email": "alice@gmail.com",
       "password": "Alice@123",
       "id": "mosmg_pMaFw"
+    },
+    {
+      "name": "test user 1",
+      "email": "test1@gmail.com",
+      "password": "123456",
+      "id": "HhwQqTaodIs"
+    },
+    {
+      "name": "Peter Murdoch",
+      "email": "peter@gmail.com",
+      "password": "123457",
+      "id": "MqUnPLfOIVQ"
+    },
+    {
+      "name": "Abc",
+      "email": "abc@gmail.com",
+      "password": "Abc@123",
+      "id": "_NhM_HXXr0U"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

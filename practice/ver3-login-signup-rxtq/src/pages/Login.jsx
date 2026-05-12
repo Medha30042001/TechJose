@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { APP_ROUTES } from '../utils/appRoutes'
 import { useDispatch } from 'react-redux'
 import { setLoggedInUser } from '../store/slices/authSlice'
+import { authStyles } from '../styles/authStyles'
 
 const Login = () => {
 
@@ -22,7 +23,7 @@ const Login = () => {
         onSuccess : (data) => {
             //alert("Login Successful. Go to dashboard");
             dispatch(setLoggedInUser(data));
-            navigate(APP_ROUTES.DASHBOARD);
+            navigate(APP_ROUTES.DASHBOARD); //<Navigate to={} />
 
         },
 
@@ -41,27 +42,27 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        loginMutation.mutate(formData);
+        loginMutation.mutate(formData); //loginUser(formData)
     }
 
   return (
     <>
-        <div>
-            <div>
+        <div className={authStyles.pageWrapper}>
+            <div className={authStyles.card}>
 
-                <h1>Login here</h1>
+                <h1 className={authStyles.title}>Login here</h1>
 
-                <p>Login to view the dashboard</p>
+                <p className={authStyles.subtitle}>Login to view the dashboard</p>
 
                 <form onSubmit={handleLogin} 
-                    className=''>
+                    className={authStyles.form}>
                         
                         <input type="email"
                         name='email'
                         placeholder='Enter your email'
                         value={formData.email}
                         onChange={handleChange}
-                        className=''
+                        className={authStyles.input}
                         required />
 
                         <input type="password"
@@ -69,32 +70,35 @@ const Login = () => {
                         placeholder='Enter your password'
                         value={formData.password}
                         onChange={handleChange}
-                        className=''
+                        className={authStyles.input}
                         required />
 
                         <button type='submit'
                             disabled={loginMutation.isPending}
-                            className=''>
+                            className={authStyles.primaryButton}>
                             {loginMutation.isPending ? "Logging in" : "Login"}
                         </button>
                 </form>
 
                 {loginMutation.isError && (
-                    <p className=''>
+                    <p className={authStyles.error}>
                         {loginMutation.error.message}</p>
                 )}
 
-                <div className=''>
-                    <p className=''>Test credentials : </p>
+                <div className='bg-slate-100 rounded-lg p-4 mt-5 text-sm text-slate-600'>
+                    <p className='font-semibold'>Test credentials : </p>
                     <p>email : test@gmail.com</p>
                     <p>password : 123456</p>
                 </div>
 
-                <p className=''>
-                    Haven&apos;t registered yet?{" "} </p>
-                <Link to={APP_ROUTES.SIGNUP}
-                className=''>
-                    Signup</Link>
+                <p className={authStyles.linkText}>
+                    Haven&apos;t registered yet?{" "} 
+                    
+                    <Link to={APP_ROUTES.SIGNUP}
+                        className={authStyles.link}>
+                        Signup</Link> 
+                </p>
+                
             </div>
         </div>
     </>

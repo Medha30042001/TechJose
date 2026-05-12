@@ -4,6 +4,7 @@ import { signupUser } from '../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
 import { APP_ROUTES } from '../utils/appRoutes';
 import { useDispatch } from 'react-redux';
+import { authStyles } from '../styles/authStyles';
 
 const Signup = () => {
 
@@ -42,23 +43,24 @@ const Signup = () => {
 
   return (
     <>
-        <div className=''>
-            <div className=''>
+        <div className={authStyles.pageWrapper}>
+            <div className={authStyles.card}>
 
-                <h1 className=''>
+                <h1 className={authStyles.title}>
                         Create Account
                 </h1>
-                <p className=''>
+                <p className={authStyles.subtitle}>
                     Signup here to register yourself as a user</p>
 
-                <form onSubmit={handleSignup} className=''>
+                <form onSubmit={handleSignup} 
+                className={authStyles.form}>
 
                     <input type="text"
                         name='name'
                         value={formData.name}
                         placeholder='Enter your name'
                         onChange={handleChange}
-                        className=''
+                        className={authStyles.input}
                         required />
 
                     <input type="email"
@@ -66,7 +68,7 @@ const Signup = () => {
                         value={formData.email}
                         placeholder='Enter your email'
                         onChange={handleChange}
-                        className=''
+                        className={authStyles.input}
                         required />
 
                     <input type="password"
@@ -74,28 +76,30 @@ const Signup = () => {
                         value={formData.password}
                         placeholder='Enter your password'
                         onChange={handleChange}
-                        className=''
+                        className={authStyles.input}
                         required/>
 
                     <button type='submit'
                         disabled={signupMutation.isPending}
-                        className=''
+                        className={authStyles.primaryButton}
                         >
                             {signupMutation.isPending? "Creating account..." : "Signup"}
                     </button>
                 </form>
 
                 {signupMutation.isError && (
-                    <p className=''>{signupMutation.error.message}</p>
+                    <p className={authStyles.error}>{signupMutation.error.message}</p>
                 )}
 
-                <p className=''>
-                    Already logged in? 
+                <p className={authStyles.linkText}>
+                    Already logged in? {" "}
+
+                    <Link to={APP_ROUTES.LOGIN}
+                        className={authStyles.link}>
+                        Login
+                    </Link>
                 </p>
-                <Link to={APP_ROUTES.LOGIN}
-                    className=''>
-                    Login
-                </Link>
+                
             </div>
             
         </div>
